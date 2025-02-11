@@ -1,5 +1,6 @@
 package com.example.springExample1;
 
+import com.example.springExample1.user.dao.NUserDao;
 import com.example.springExample1.user.dao.UserDao;
 import com.example.springExample1.user.domain.User;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +14,7 @@ public class SpringExample1Application {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		SpringApplication.run(SpringExample1Application.class, args);
 
-		UserDao userDao = new UserDao();
+		UserDao userDao = new NUserDao();
 
 		User user = new User();
 		user.setId("davidyoon");
