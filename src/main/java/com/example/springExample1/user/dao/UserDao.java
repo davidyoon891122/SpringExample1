@@ -1,14 +1,23 @@
 package com.example.springExample1.user.dao;
 
+import com.example.springExample1.user.ConnectionMaker;
+import com.example.springExample1.user.DConnectionMaker;
+import com.example.springExample1.user.SimpleConnectionMaker;
 import com.example.springExample1.user.domain.User;
 
 import java.sql.*;
 
-public abstract class UserDao {
+public class UserDao {
+
+    private final ConnectionMaker simpleConnectionMaker;
+
+    public UserDao(ConnectionMaker connectionMaker) {
+        this.simpleConnectionMaker = connectionMaker;
+    }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
 
-        Connection c = getConnection();
+        Connection c = simpleConnectionMaker.makeConnection();
         PreparedStatement ps = c.prepareStatement(
                 "insert into users(id, name, password) values(?,?,?)"
         );
@@ -23,7 +32,7 @@ public abstract class UserDao {
 
     public User get(String id) throws ClassNotFoundException, SQLException {
 
-        Connection c = getConnection();
+        Connection c = simpleConnectionMaker.makeConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
@@ -45,8 +54,6 @@ public abstract class UserDao {
 
         return user;
     }
-
-    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 
 }
 
