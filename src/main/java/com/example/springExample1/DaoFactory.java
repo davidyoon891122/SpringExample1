@@ -9,18 +9,19 @@ import com.example.springExample1.user.dao.UserDao;
 public class DaoFactory {
 
     public UserDao userDao() {
-        ConnectionMaker connectionMaker = new DConnectionMaker();
-        return new UserDao(connectionMaker);
+        return new UserDao(connectionMaker());
     }
 
     public AccountDao accountDao() {
-        ConnectionMaker connectionMaker = new DConnectionMaker();
-        return new AccountDao(connectionMaker);
+        return new AccountDao(connectionMaker());
     }
 
     public MessageDao messageDao() {
-        ConnectionMaker connectionMaker = new DConnectionMaker();
-        return new MessageDao(connectionMaker);
+        return new MessageDao(connectionMaker());
+    }
+
+    private ConnectionMaker connectionMaker() {
+        return new DConnectionMaker();
     }
 
 }
