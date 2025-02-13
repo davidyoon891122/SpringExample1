@@ -1,11 +1,10 @@
 package com.example.springExample1;
 
-import com.example.springExample1.user.ConnectionMaker;
-import com.example.springExample1.user.DConnectionMaker;
 import com.example.springExample1.user.dao.UserDao;
 import com.example.springExample1.user.domain.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import java.sql.SQLException;
 
@@ -15,9 +14,7 @@ public class SpringExample1Application {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		SpringApplication.run(SpringExample1Application.class, args);
 
-		ConnectionMaker connectionMaker = new DConnectionMaker();
-		UserDao userDao = new UserDao();
-		userDao.setConnectionMaker(connectionMaker);
+		UserDao userDao = new DaoFactory().userDao();
 
 		User user = new User();
 		user.setId("davidyoon");

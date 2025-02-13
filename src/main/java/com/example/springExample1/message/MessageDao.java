@@ -1,13 +1,13 @@
 package com.example.springExample1.message;
 
-import com.example.springExample1.user.ConnectionMaker;
+import javax.sql.DataSource;
 
 public class MessageDao {
 
-    private ConnectionMaker connectionMaker;
+    private DataSource dataSource;
 
-    public MessageDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    public MessageDao(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
 }
