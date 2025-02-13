@@ -9,7 +9,7 @@ public class UserDao {
 
     private ConnectionMaker connectionMaker;
 
-    public void setConectionMaker(ConnectionMaker connectionMaker) {
+    public void setConnectionMaker(ConnectionMaker connectionMaker) {
         this.connectionMaker = connectionMaker;
     }
 
@@ -54,3 +54,7 @@ public class UserDao {
     }
 
 }
+
+//<bean id="userDao" class="com.example.springExample1.user.dao.UserDao">
+//    <property name="connectionMaker" ref="connectionMaker" />
+//</bean>

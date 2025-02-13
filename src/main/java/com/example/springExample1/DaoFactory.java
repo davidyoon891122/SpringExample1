@@ -14,7 +14,7 @@ public class DaoFactory {
     @Bean
     public UserDao userDao() {
         UserDao userDao = new UserDao();
-        userDao.setConectionMaker(connectionMaker());
+        userDao.setConnectionMaker(connectionMaker());
 
         return userDao;
     }
@@ -31,5 +31,15 @@ public class DaoFactory {
     public ConnectionMaker connectionMaker() {
         return new DConnectionMaker();
     }
+    // <bean id="connectionMaker" class="com.example.springExample1.user.DBConnectionMaker">
 
 }
+
+
+//<beans>
+//    <bean id="connectionMaker" class="com.example.springExample1.user.DBConnectionMaker">
+//
+//    <bean id="userDao" class="com.example.springExample1.user.dao.UserDao">
+//        <property name="connectionMaker" ref="connectionMaker" />
+//    </bean>
+//</beans>

@@ -17,7 +17,7 @@ public class SpringExample1Application {
 
 		ConnectionMaker connectionMaker = new DConnectionMaker();
 		UserDao userDao = new UserDao();
-		userDao.setConectionMaker(connectionMaker);
+		userDao.setConnectionMaker(connectionMaker);
 
 		User user = new User();
 		user.setId("davidyoon");
