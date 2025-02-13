@@ -1,23 +1,21 @@
 package com.example.springExample1.user.dao;
 
 import com.example.springExample1.user.ConnectionMaker;
-import com.example.springExample1.user.DConnectionMaker;
-import com.example.springExample1.user.SimpleConnectionMaker;
 import com.example.springExample1.user.domain.User;
 
 import java.sql.*;
 
 public class UserDao {
 
-    private final ConnectionMaker simpleConnectionMaker;
+    private ConnectionMaker connectionMaker;
 
-    public UserDao(ConnectionMaker connectionMaker) {
-        this.simpleConnectionMaker = connectionMaker;
+    public void setConectionMaker(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
 
-        Connection c = simpleConnectionMaker.makeConnection();
+        Connection c = connectionMaker.makeConnection();
         PreparedStatement ps = c.prepareStatement(
                 "insert into users(id, name, password) values(?,?,?)"
         );
@@ -32,7 +30,7 @@ public class UserDao {
 
     public User get(String id) throws ClassNotFoundException, SQLException {
 
-        Connection c = simpleConnectionMaker.makeConnection();
+        Connection c = connectionMaker.makeConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
@@ -56,11 +54,3 @@ public class UserDao {
     }
 
 }
-
-
-
-
-//Class.forName("com.mysql.cj.jdbc.Driver");
-//        return DriverManager.getConnection(
-//                "jdbc:mysql://localhost/example", "davidyoon", "Spring1234"
-//);
